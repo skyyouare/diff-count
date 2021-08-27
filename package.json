@@ -3,9 +3,14 @@
 	"displayName": "diff count",
 	"description": "",
 	"version": "0.0.1",
+	"publisher": "doujinya",
 	"engines": {
 		"vscode": "^1.59.0"
 	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	  },
 	"categories": [
 		"Other"
 	],
