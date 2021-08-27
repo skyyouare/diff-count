@@ -10,17 +10,9 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:diff-count.helloWorld"
+		"*"
 	],
 	"main": "./extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "diff-count.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
