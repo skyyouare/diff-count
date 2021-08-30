@@ -2,7 +2,7 @@
 	"name": "diff-count",
 	"displayName": "diff count",
 	"description": "",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"publisher": "doujinya",
 	"engines": {
 		"vscode": "^1.59.0"
@@ -31,7 +31,8 @@
 		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
-		"typescript": "^4.3.2",
+		"typescript": "^4.4.2",
 		"vscode-test": "^1.5.2"
-	}
+	},
+	"dependencies": {}
 }
