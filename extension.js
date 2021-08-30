@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import { window, StatusBarAlignment, Disposable } from 'vscode';
-import { diffLines } from 'diff';
+const diff = require('diff')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -33,7 +33,7 @@ const createDiffCounter = () => {
 			let left_text = left.document.getText()
 			let right_text = right.document.getText()
 			//对比
-			const diff_arr = diffLines(left_text, right_text, false, true);
+			const diff_arr = diff.diffLines(left_text, right_text, false, true);
 			var count_added = 0;
 			var count_removed = 0;
 			// console.log(diff_arr)
