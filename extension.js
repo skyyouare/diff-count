@@ -33,7 +33,9 @@ const createDiffCounter = () => {
 			let left_text = left.document.getText()
 			let right_text = right.document.getText()
 			//对比
-			const diff_arr = diff.diffLines(left_text, right_text, false, true);
+			// const diff_arr = diff.diffLines(left_text, right_text, false, true);
+			const diff_arr = diff.diffTrimmedLines(left_text, right_text);
+			// console.log(diff_arr)
 			var count_added = 0;
 			var count_removed = 0;
 			// console.log(diff_arr)
