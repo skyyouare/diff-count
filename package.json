@@ -2,7 +2,7 @@
 	"name": "diff-count",
 	"displayName": "diff count",
 	"description": "",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"publisher": "doujinya",
 	"engines": {
 		"vscode": "^1.59.0"
