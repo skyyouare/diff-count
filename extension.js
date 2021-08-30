@@ -1,24 +1,24 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
-const diff = require('diff')
+import { window, StatusBarAlignment, Disposable } from 'vscode';
+import { diffLines } from 'diff';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
 
 const createDiffCounter = () => {
-    const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 200);
+    const statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 200);
 
     return {
         update: () => {
-            const activeEditor = vscode.window.activeTextEditor;
+            const activeEditor = window.activeTextEditor;
 
             if (!activeEditor) {
                 statusBarItem.hide();
                 return;
             }
 
-			let editors = vscode.window.visibleTextEditors
+			let editors = window.visibleTextEditors
 			if(editors.length!=2){
 				console.log('不是2个文件')
 				statusBarItem.hide();
@@ -33,7 +33,7 @@ const createDiffCounter = () => {
 			let left_text = left.document.getText()
 			let right_text = right.document.getText()
 			//对比
-			const diff_arr = diff.diffLines(left_text, right_text, false, true);
+			const diff_arr = diffLines(left_text, right_text, false, true);
 			var count_added = 0;
 			var count_removed = 0;
 			// console.log(diff_arr)
@@ -59,9 +59,9 @@ const createDiffCounterController = () => {
     const diffCounter = createDiffCounter();
     diffCounter.update();
 
-    const eventDisposable = vscode.Disposable.from([
-        vscode.window.onDidChangeActiveTextEditor(diffCounter.update),
-        vscode.window.onDidChangeTextEditorSelection(diffCounter.update)
+    const eventDisposable = Disposable.from([
+        window.onDidChangeActiveTextEditor(diffCounter.update),
+        window.onDidChangeTextEditorSelection(diffCounter.update)
     ]);
 
     return {
@@ -86,7 +86,7 @@ function activate(context) {
 // this method is called when your extension is deactivated
 function deactivate() {}
 
-module.exports = {
+export default {
 	activate,
 	deactivate
 }
