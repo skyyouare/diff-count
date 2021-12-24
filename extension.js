@@ -5,7 +5,12 @@ const diff = require('diff')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
-
+function is_svn_file(file_name){ 
+    if(/^r\d{6}\_(.+)$/.test(file_name)){ 
+        return true;
+    }
+	return false;
+}
 const createDiffCounter = () => {
     const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 200);
 
@@ -27,8 +32,16 @@ const createDiffCounter = () => {
 			//计算差异
 			var left = editors[0];
 			var right = editors[1];
-			if(left.document.uri.fsPath!=right.document.uri.fsPath){
-				// console.log('2个文件名不一致')
+			var left_path = left.document.uri.fsPath;
+			var right_path = right.document.uri.fsPath;
+			var left_pos = left_path.lastIndexOf('/');
+			var right_pos = right_path.lastIndexOf('/');
+			var left_name = left_path.substring(left_pos+1);
+			var right_name = right_path.substring(right_pos+1)
+			if(!is_svn_file(left_name)||!is_svn_file(right_name)){
+				console.log('不是svn文件')
+				statusBarItem.hide();
+				return false;
 			}
 			let left_text = left.document.getText()
 			let right_text = right.document.getText()
